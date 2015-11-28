@@ -22,13 +22,13 @@ import javax.persistence.EntityManagerFactory;
         "calories.tracker.app.init", " calories.tracker.app.security"})
 public class RootContextConfig {
 
-    @Bean(name = "transactionManager")
+  /*  @Bean(name = "transactionManager")
     public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory,
                                                          DriverManagerDataSource dataSource) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         transactionManager.setDataSource(dataSource);
         return transactionManager;
-    }
+    }*/
 
 }

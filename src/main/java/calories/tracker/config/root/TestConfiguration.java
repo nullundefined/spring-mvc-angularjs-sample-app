@@ -32,7 +32,7 @@ import java.util.Map;
 @EnableTransactionManagement
 public class TestConfiguration {
 
-    @Bean(initMethod = "init")
+   /* @Bean(initMethod = "init")
     public TestDataInitializer initTestData() {
         return new TestDataInitializer();
     }
@@ -64,6 +64,6 @@ public class TestConfiguration {
         entityManagerFactoryBean.setJpaPropertyMap(jpaProperties);
 
         return entityManagerFactoryBean;
-    }
+    }*/
 
 }

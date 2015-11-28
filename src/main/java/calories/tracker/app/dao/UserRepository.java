@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -16,8 +17,8 @@ import java.util.List;
 @Repository
 public class UserRepository {
 
-    @PersistenceContext
-    private EntityManager em;
+    /*@PersistenceContext
+    private EntityManager em;*/
 
     /**
      * finds a user given its username
@@ -27,11 +28,12 @@ public class UserRepository {
      */
     public User findUserByUsername(String username) {
 
-        List<User> users = em.createNamedQuery(User.FIND_BY_USERNAME, User.class)
+       /* List<User> users = em.createNamedQuery(User.FIND_BY_USERNAME, User.class)
                 .setParameter("username", username)
                 .getResultList();
 
-        return users.size() == 1 ? users.get(0) : null;
+        return users.size() == 1 ? users.get(0) : null;*/
+        return null;
     }
 
     /**
@@ -42,7 +44,7 @@ public class UserRepository {
      * @return the total number of calories for the user for today
      */
     public Long findTodaysCaloriesForUser(String username) {
-        return (Long) em.createNamedQuery(User.COUNT_TODAYS_CALORIES).setParameter("username", username).getSingleResult();
+      return Long.valueOf(0);//  return (Long) em.createNamedQuery(User.COUNT_TODAYS_CALORIES).setParameter("username", username).getSingleResult();
     }
 
     /**
@@ -52,7 +54,7 @@ public class UserRepository {
      * @param user
      */
     public void save(User user) {
-        em.merge(user);
+       // em.merge(user);
     }
 
     /**
@@ -63,10 +65,11 @@ public class UserRepository {
      */
     public boolean isUsernameAvailable(String username) {
 
-        List<User> users = em.createNamedQuery(User.FIND_BY_USERNAME, User.class)
+      /*  List<User> users = em.createNamedQuery(User.FIND_BY_USERNAME, User.class)
                 .setParameter("username", username)
                 .getResultList();
 
-        return users.isEmpty();
+        return users.isEmpty();*/
+        return true;
     }
 }

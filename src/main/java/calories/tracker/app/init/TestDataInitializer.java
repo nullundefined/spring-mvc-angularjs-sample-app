@@ -23,7 +23,7 @@ import java.util.Date;
 @Component
 public class TestDataInitializer {
 
-    @Autowired
+   /* @Autowired
     private EntityManagerFactory entityManagerFactory;
 
 
@@ -56,5 +56,5 @@ public class TestDataInitializer {
         session.persist(new Meal(user, new Date(115, 0, 8), new Time(19, 0, 0), "8 -  Moules Frites", 1000L));
 
         transaction.commit();
-    }
+    }*/
 }
