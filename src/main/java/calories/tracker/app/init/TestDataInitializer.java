@@ -16,14 +16,14 @@ import java.util.Date;
 /**
  *
  * This is a initializing bean that inserts some test data in the database. It is only active in
- * the development profile, to see the data login with user123 / PAssword2 and do a search starting on
+ * the development profile, to see the data login with test123 / Password123 and do a search starting on
  * 1st of January 2015.
  *
  */
 @Component
 public class TestDataInitializer {
 
-   /* @Autowired
+    @Autowired
     private EntityManagerFactory entityManagerFactory;
 
 
@@ -34,7 +34,7 @@ public class TestDataInitializer {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        User user = new User("test123", "$2a$10$x9vXeDsSC2109FZfIJz.pOZ4dJ056xBpbesuMJg3jZ.ThQkV119tS", "test@email.com", 1000L);
+        User user = new User("test123", "$2a$10$2zrZIHD.JXqlu8wR/LIto.5w0BeLT.M2GBA.FOp8kmW5urJz2VpMa", "test@email.com", 1000L);
 
         session.persist(user);
 
@@ -56,5 +56,5 @@ public class TestDataInitializer {
         session.persist(new Meal(user, new Date(115, 0, 8), new Time(19, 0, 0), "8 -  Moules Frites", 1000L));
 
         transaction.commit();
-    }*/
+    }
 }

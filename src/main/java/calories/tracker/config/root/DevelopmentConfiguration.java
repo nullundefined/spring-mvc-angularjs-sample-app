@@ -15,24 +15,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
  * Development specific configuration - creates a localhost postgresql datasource,
  * sets hibernate on create drop mode and inserts some test data on the database.
- *
+ * <p>
  * Set -Dspring.profiles.active=development to activate this config.
- *
  */
 @Configuration
 @Profile("development")
 @EnableTransactionManagement
 public class DevelopmentConfiguration {
 
-   /* @Bean(initMethod = "init")
+    @Bean(initMethod = "init")
     public TestDataInitializer initTestData() {
         return new TestDataInitializer();
-    }*/
+    }
 
-   /* @Bean(name = "datasource")
+    @Bean(name = "datasource")
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
@@ -61,5 +59,4 @@ public class DevelopmentConfiguration {
 
         return entityManagerFactoryBean;
     }
-*/
 }

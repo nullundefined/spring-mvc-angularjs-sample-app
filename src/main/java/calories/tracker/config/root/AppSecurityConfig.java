@@ -35,8 +35,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private SecurityUserDetailsService userDetailsService;
 
-   /* @Autowired
-    DataSource dataSource;*/
+    @Autowired
+    DataSource dataSource;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
