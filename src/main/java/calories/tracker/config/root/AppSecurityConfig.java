@@ -19,12 +19,10 @@ import org.springframework.security.web.csrf.CsrfFilter;
 import javax.sql.DataSource;
 
 /**
- *
  * The Spring Security configuration for the application - its a form login config with authentication via session cookie (once logged in),
  * with fallback to HTTP Basic for non-browser clients.
- *
+ * <p>
  * The CSRF token is put on the reply as a header via a filter, as there is no server-side rendering on this app.
- *
  */
 @Configuration
 @EnableWebSecurity
@@ -50,27 +48,28 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterAfter(csrfTokenFilter, CsrfFilter.class);
 
         http
-            .authorizeRequests()
-            .antMatchers("/resources/public/**").permitAll()
-            .antMatchers("/resources/img/**").permitAll()
-            .antMatchers("/resources/bower_components/**").permitAll()
-            .antMatchers(HttpMethod.POST, "/user").permitAll()
-            .anyRequest().authenticated()
-            .and()
-            .formLogin()
-            .defaultSuccessUrl("/resources/index.html")
-            .loginProcessingUrl("/authenticate")
-            .usernameParameter("username")
-            .passwordParameter("password")
-            .successHandler(new AjaxAuthenticationSuccessHandler(new SavedRequestAwareAuthenticationSuccessHandler()))
-            .loginPage("/resources/public/login.html")
-            .and()
-            .httpBasic()
-            .and()
-            .logout()
-            .logoutUrl("/logout")
-            .logoutSuccessUrl("/resources/public/login.html")
-            .permitAll();
+                .authorizeRequests()
+                .antMatchers("/resources/public/**").permitAll()
+                .antMatchers("/resources/img/**").permitAll()
+                .antMatchers("/resources/bower_components/**").permitAll()
+                .antMatchers("/login").permitAll()
+                .antMatchers(HttpMethod.POST, "/user").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .defaultSuccessUrl("/index") //.defaultSuccessUrl("/resources/index.html")
+                .loginProcessingUrl("/authenticate")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .successHandler(new AjaxAuthenticationSuccessHandler(new SavedRequestAwareAuthenticationSuccessHandler()))
+                .loginPage("/login") //.loginPage("/resources/public/login.html")
+                .and()
+                .httpBasic()
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login")//.logoutSuccessUrl("/resources/public/login.html")
+                .permitAll();
 
         if ("true".equals(System.getProperty("httpsOnly"))) {
             LOGGER.info("launching the application in HTTPS-only mode");
