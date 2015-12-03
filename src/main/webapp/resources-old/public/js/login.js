@@ -2,6 +2,7 @@ angular.module('loginApp', ['common', 'spring-security-csrf-token-interceptor', 
     .controller('LoginCtrl', ['$scope', '$http', function ($scope, $http) {
 
         $scope.onLogin = function () {
+            debugger
             console.log('Attempting login with username ' + $scope.vm.username + ' and password ' + $scope.vm.password);
 
             $scope.vm.submitted = true;

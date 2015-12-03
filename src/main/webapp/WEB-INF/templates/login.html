@@ -27,7 +27,8 @@
   <![endif]-->
 </head>
 <body class="hold-transition login-page" id="loginApp">
-<div class="login-box">
+
+<div class="login-box" ng-controller="BaseFormCtrl">
   <div class="login-logo">
     <a href="../../index2.html"><b>DigiCal</b>CMS</a>
   </div>
@@ -35,22 +36,22 @@
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
 
-    <form action="../../index2.html" method="post">
+    <form ng-submit="onLogin()" name="form" novalidate="true" ng-controller="LoginCtrl">
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email"/>
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <input type="text" class="form-control" ng-focus="focus('username')"  ng-blur="blur('username')" ng-model="vm.username" placeholder="Username" required="true" ng-minlength="6"/>
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password"/>
+        <input type="password" class="form-control" ng-focus="focus('password')"  ng-blur="blur('password')" ng-model="vm.password" placeholder="Password"/>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
         <div class="col-xs-8">
-          <div class="checkbox icheck">
+          <!--<div class="checkbox icheck">
             <label>
               <input type="checkbox"/> Remember Me
             </label>
-          </div>
+          </div>-->
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
@@ -59,18 +60,18 @@
         <!-- /.col -->
       </div>
     </form>
-
+<!--
     <div class="social-auth-links text-center">
       <p>- OR -</p>
       <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
         Facebook</a>
       <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
         Google+</a>
-    </div>
+    </div>-->
     <!-- /.social-auth-links -->
 
-    <a href="#">I forgot my password</a><br/>
-    <a href="register.html" class="text-center">Register a new membership</a>
+    <!--<a href="#">I forgot my password</a><br/>
+    <a href="register.html" class="text-center">Register a new membership</a>-->
 
   </div>
   <!-- /.login-box-body -->
@@ -78,17 +79,17 @@
 <!-- /.login-box -->
 
 <!-- jQuery 2.1.4 -->
-<script th:src="@{/resources/public/plugins/jQuery/jQuery-2.1.4.min.js}"></script>
+<!--<script th:src="@{/resources/public/plugins/jQuery/jQuery-2.1.4.min.js}"></script>-->
 <!-- Bootstrap 3.3.5 -->
-<script th:src="@{/resources/public/bootstrap/js/bootstrap.min.js}"></script>
+<!--<script th:src="@{/resources/public/bootstrap/js/bootstrap.min.js}"></script>-->
 <!-- iCheck -->
-<script th:src="@{/resources/public//plugins/iCheck/icheck.min.js}"></script>
+<!--<script th:src="@{/resources/public//plugins/iCheck/icheck.min.js}"></script>-->
 
 <script type="text/javascript" data-main="/resources/public/js/run-loggin-app"
         src="/resources/bower_components/requirejs/require.js"></script>
 
 
-<script>
+<!--<script>
   $(function () {
     $('input').iCheck({
       checkboxClass: 'icheckbox_square-blue',
@@ -96,6 +97,6 @@
       increaseArea: '20%' // optional
     });
   });
-</script>
+</script>-->
 </body>
 </html>
