@@ -65,6 +65,6 @@ require(['indexApp'], function () {
      increaseArea: '20%' // optional
      });
      });*/
-    //angular.bootstrap(document.getElementById('loginApp'), ['loginApp']);
+    angular.bootstrap(document.getElementById('indexApp'), ['indexApp']);
 
 });
