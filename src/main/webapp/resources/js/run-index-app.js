@@ -11,6 +11,7 @@ require.config({
         csrfInterceptor: '../bower_components/spring-security-csrf-token-interceptor/dist/spring-security-csrf-token-interceptor.min',
         common: 'common',
         indexApp: 'indexApp',
+        frontendServices: 'frontend-services',
         bootstrap: '../bootstrap/js/bootstrap',
         slimscroll: '../bower_components/AdminLTE/plugins/slimScroll/jquery.slimscroll',
         <!-- FastClick -->
@@ -45,13 +46,16 @@ require.config({
         common: {
             deps: ['angular', 'csrfInterceptor', 'angularMessages']
         },
-        indexApp: {
-            deps: ['common']
+        frontendServices: {
+            deps: ['angular', 'csrfInterceptor']
         },
         fastclick: {},
         adminLte: {},
         demo: {
             deps: ['adminLte']
+        },
+        indexApp: {
+            deps: ['common', 'frontendServices']
         }
 
     }
