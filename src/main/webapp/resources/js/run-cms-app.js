@@ -8,9 +8,10 @@ require.config({
     paths: {
         angular: '../bower_components/angular/angular',
         angularMessages: '../bower_components/angular-messages/angular-messages',
+        angularRoute: '../bower_components/angular-route/angular-route',
         csrfInterceptor: '../bower_components/spring-security-csrf-token-interceptor/dist/spring-security-csrf-token-interceptor.min',
-        common: 'common',
-        indexApp: 'indexApp',
+        main: 'main',
+        controllers: 'controllers',
         frontendServices: 'frontend-services',
         bootstrap: '../bootstrap/js/bootstrap',
         slimscroll: '../bower_components/AdminLTE/plugins/slimScroll/jquery.slimscroll',
@@ -43,8 +44,14 @@ require.config({
         angularMessages: {
             deps: ['angular']
         },
+        angularRoute: {
+            deps: ['angular']
+        },
         common: {
             deps: ['angular', 'csrfInterceptor', 'angularMessages']
+        },
+        cmsApp: {
+            deps: ['common', 'angularRoute', 'controllers']
         },
         frontendServices: {
             deps: ['angular', 'csrfInterceptor']
@@ -54,14 +61,15 @@ require.config({
         demo: {
             deps: ['adminLte']
         },
-        indexApp: {
-            deps: ['common', 'frontendServices']
+        controllers: {
+            deps: ['frontendServices']
         }
 
     }
 });
 
-require(['indexApp'], function () {
+require(['cmsApp'], function () {
+    console.log('starting cmpsApp angular');
     /*$(function () {
      $('input').iCheck({
      checkboxClass: 'icheckbox_square-blue',
@@ -69,6 +77,6 @@ require(['indexApp'], function () {
      increaseArea: '20%' // optional
      });
      });*/
-    angular.bootstrap(document.getElementById('indexApp'), ['indexApp']);
+    angular.bootstrap(document.getElementById('cmsApp'), ['cmsApp']);
 
 });
