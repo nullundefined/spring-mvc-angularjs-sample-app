@@ -11,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,10 +28,12 @@ import java.util.List;
  */
 
 @Controller
+@SessionAttributes(ContentController.CONTENT_LIST)
 @RequestMapping("/content")
 public class ContentController {
 
     private static final Logger LOGGER = Logger.getLogger(UserController.class);
+    public static final String CONTENT_LIST = "contentList";
 
     @Autowired
     UserService userService;
@@ -37,10 +41,21 @@ public class ContentController {
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(method = RequestMethod.GET)
-    public List<BasicContent> getContentList() {
-        final FooterContent fc = new FooterContent("091/3100144", "Radnicka cesta 44", "www.pbz.hr");
-        fc.setType(BasicContent.ContentType.FOOTER);
-        return Arrays.asList(fc);
+    public List<BasicContent> getContentList(final ModelMap modelMap) {
+        List<BasicContent> res = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            res.add(new FooterContent("091/3100144", "Radnicka cesta 44", "www.pbz.hr"));
+        }
+        modelMap.addAttribute(CONTENT_LIST, res);
+        return res;
+    }
+
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    public BasicContent getContentDetails(@PathVariable(value = "id") Long id, final @ModelAttribute(CONTENT_LIST) List<BasicContent> list ) {
+        return list.get(0);
     }
 
 /*    @ResponseBody

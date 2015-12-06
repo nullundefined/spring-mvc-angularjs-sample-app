@@ -4,7 +4,13 @@ cmsControllers.controller('ContentCtrl', ['$scope', '$http', 'ContentService', f
     ContentService.getBasicContent().then(function (data) {
         $scope.content = data;
     });
+
     $scope.addContent = function () {
         console.log('add content');
+    };
+
+    $scope.getDetails = function () {
+        console.log('add content');
+
     };
 }]);

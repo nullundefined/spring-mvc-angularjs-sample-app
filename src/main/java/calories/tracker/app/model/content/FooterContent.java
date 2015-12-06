@@ -1,5 +1,7 @@
 package calories.tracker.app.model.content;
 
+import java.util.Date;
+
 /**
  * Created by matija on 05.12.15..
  */
@@ -12,6 +14,9 @@ public class FooterContent extends BasicContent{
         this.phoneNumber = phoneNumber;
         this.fullAddress = fullAddress;
         this.urlWeb = urlWeb;
+        setType(ContentType.FOOTER);
+        setDate(new Date());
+        setId(new Long(1));
     }
 
     public String getPhoneNumber() {
