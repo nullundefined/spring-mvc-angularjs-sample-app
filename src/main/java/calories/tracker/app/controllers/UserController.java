@@ -4,6 +4,7 @@ package calories.tracker.app.controllers;
 import calories.tracker.app.dto.NewUserDTO;
 import calories.tracker.app.dto.UserInfoDTO;
 import calories.tracker.app.model.User;
+import calories.tracker.app.model.UserFilteringParams;
 import calories.tracker.app.services.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -29,6 +32,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
+
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(method = RequestMethod.GET)
@@ -39,7 +43,6 @@ public class UserController {
 
         return user != null ? new UserInfoDTO(user.getUsername(), user.getMaxCaloriesPerDay(), todaysCalories) : null;
     }
-
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(method = RequestMethod.PUT)
@@ -52,6 +55,22 @@ public class UserController {
     @RequestMapping(method = RequestMethod.POST)
     public void createUser(@RequestBody NewUserDTO user) {
         userService.createUser(user.getUsername(), user.getEmail(), user.getPlainTextPassword());
+    }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public List<UserInfoDTO> findUsers(Principal principal) {
+
+        final UserFilteringParams filteringParams = new UserFilteringParams();
+        filteringParams.setStatus(User.UserStatus.ACTIVE);
+        List<User> users = userService.findUsers(filteringParams);
+        List<UserInfoDTO> userDTOs = new ArrayList<UserInfoDTO>();
+        for (User user:users) {
+            UserInfoDTO userInfo = new UserInfoDTO(user.getUsername(), user.getMaxCaloriesPerDay(),Long.valueOf(1));
+            userDTOs.add(userInfo);
+        }
+        return userDTOs;
     }
 
 

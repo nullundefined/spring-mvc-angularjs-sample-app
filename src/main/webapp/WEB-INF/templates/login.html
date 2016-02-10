@@ -27,6 +27,7 @@
   <![endif]-->
 </head>
 <body class="hold-transition login-page" id="loginApp">
+<input type="hidden" id="ctx" th:value="@{/}" />
 
 <div class="login-box" ng-controller="BaseFormCtrl">
   <div class="login-logo">
@@ -38,7 +39,7 @@
 
     <form ng-submit="onLogin()" name="form" novalidate="true" ng-controller="LoginCtrl">
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" ng-focus="focus('username')"  ng-blur="blur('username')" ng-model="vm.username" placeholder="Username" required="true" ng-minlength="6"/>
+        <input type="text" class="form-control" ng-focus="focus('username')"  ng-blur="blur('username')" ng-model="vm.username" placeholder="Username" required="true" ng-minlength="3"/>
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
@@ -85,8 +86,8 @@
 <!-- iCheck -->
 <!--<script th:src="@{/resources/public//plugins/iCheck/icheck.min.js}"></script>-->
 
-<script type="text/javascript" data-main="/resources/public/js/run-loggin-app"
-        src="/resources/bower_components/requirejs/require.js"></script>
+<script type="text/javascript" require:data-main="@{/resources/public/js/run-loggin-app}"
+        th:src="@{/resources/bower_components/requirejs/require.js}"></script>
 
 
 <!--<script>

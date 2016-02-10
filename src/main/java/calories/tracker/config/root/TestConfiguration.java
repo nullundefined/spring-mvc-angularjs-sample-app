@@ -37,13 +37,23 @@ public class TestConfiguration {
         return new TestDataInitializer();
     }
 
-    @Bean(name = "datasource")
+    /*@Bean(name = "datasource")
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(org.hsqldb.jdbcDriver.class.getName());
         dataSource.setUrl("jdbc:hsqldb:mem:mydb");
         dataSource.setUsername("sa");
         dataSource.setPassword("jdbc:hsqldb:mem:mydb");
+        return dataSource;
+    }*/
+
+    @Bean(name = "datasource")
+    public DriverManagerDataSource dataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(org.h2.Driver.class.getName());
+        dataSource.setUrl("jdbc:h2:~/test");
+        dataSource.setUsername("sa");
+        dataSource.setPassword("");
         return dataSource;
     }
 

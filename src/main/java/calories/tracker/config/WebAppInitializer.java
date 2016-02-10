@@ -6,7 +6,12 @@ import calories.tracker.config.root.DevelopmentConfiguration;
 import calories.tracker.config.root.RootContextConfig;
 import calories.tracker.config.root.TestConfiguration;
 import calories.tracker.config.servlet.ServletContextConfig;
+import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
 /**
  *
@@ -30,8 +35,6 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
-
-
 
 
 }

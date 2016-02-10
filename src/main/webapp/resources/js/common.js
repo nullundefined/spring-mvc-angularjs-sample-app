@@ -30,10 +30,11 @@ angular.module('common', ['ngMessages'])
 
         $scope.login = function (username, password) {
             var postData = $scope.preparePostData();
+            var ctx = $("#ctx").value();
 
             $http({
                 method: 'POST',
-                url: '/authenticate',
+                url: ctx + '/authenticate',
                 data: postData,
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",

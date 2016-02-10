@@ -6,17 +6,18 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+                <!--test-->
                 <table class="table table-bordered">
                     <tbody>
                     <tr>
                         <th style="width: 10px">#</th>
                         <th>Task</th>
-                        <th>Progress</th>
+                        <th>Progress</th>l
                         <th style="width: 40px">Label</th>
                     </tr>
                     <tr ng-repeat="x in content" >
-                        <td>1.</td>
-                        <td><a href="#/content/{{x.id}}">{{x.type}}</a></td>
+                        <td>{{x.id}}</td>
+                        <td><a href="#content/details/{{x.id}}" >{{x.mainContent}}</a></td>
                         <td>
                             <div class="progress xs">
                                 <div class="progress-bar progress-bar-danger" style="width: 55%"></div>

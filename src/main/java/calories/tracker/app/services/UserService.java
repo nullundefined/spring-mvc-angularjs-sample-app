@@ -2,12 +2,14 @@ package calories.tracker.app.services;
 
 import calories.tracker.app.dao.UserRepository;
 import calories.tracker.app.model.User;
+import calories.tracker.app.model.UserFilteringParams;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 import static calories.tracker.app.services.ValidationUtils.*;
@@ -71,7 +73,8 @@ public class UserService {
             throw new IllegalArgumentException("The username is not available.");
         }
 
-        User user = new User(username, new BCryptPasswordEncoder().encode(password), email, DEFAULT_MAX_CAL_PER_DAY);
+        User user = new User(username, new BCryptPasswordEncoder().encode(password), email, DEFAULT_MAX_CAL_PER_DAY,
+            User.UserStatus.ACTIVE);
 
         userRepository.save(user);
     }
@@ -84,6 +87,11 @@ public class UserService {
     @Transactional(readOnly = true)
     public Long findTodaysCaloriesForUser(String username) {
         return userRepository.findTodaysCaloriesForUser(username);
+    }
+
+    @Transactional(readOnly = true)
+    public List<User> findUsers(UserFilteringParams filteringParams) {
+        return userRepository.findUsers(filteringParams);
     }
 
 }

@@ -1,4 +1,4 @@
-var cmsApp = angular.module('cmsApp', ['ngRoute', 'ngMessages', 'common', 'cmsControllers']);
+var cmsApp = angular.module('cmsApp', ['ngRoute', 'ngMessages', 'common', 'controllers']);
 
 cmsApp.config(['$routeProvider',
     function ($routeProvider) {
@@ -7,9 +7,9 @@ cmsApp.config(['$routeProvider',
                 templateUrl: '/resources/partials/contents.html',
                 controller: 'ContentCtrl'
             }).
-            when('/content/:contentId', {
+            when('/content/details/:contentId', {
                 templateUrl: 'resources/partials/content-detail.html',
-                controller: 'ContentCtrl'
+                controller: 'ContentDetailsCtrl'
             }).
             otherwise({
                 redirectTo: '/contents'

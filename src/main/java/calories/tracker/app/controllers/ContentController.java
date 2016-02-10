@@ -1,22 +1,16 @@
 package calories.tracker.app.controllers;
 
-import calories.tracker.app.dto.NewUserDTO;
-import calories.tracker.app.dto.UserInfoDTO;
-import calories.tracker.app.model.User;
-import calories.tracker.app.model.content.BasicContent;
-import calories.tracker.app.model.content.FooterContent;
+import calories.tracker.app.model.Content;
+import calories.tracker.app.services.ContentService;
 import calories.tracker.app.services.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -32,31 +26,44 @@ import java.util.List;
 @RequestMapping("/content")
 public class ContentController {
 
-    private static final Logger LOGGER = Logger.getLogger(UserController.class);
-    public static final String CONTENT_LIST = "contentList";
+  private static final Logger LOGGER = Logger.getLogger(UserController.class);
+  public static final String CONTENT_LIST = "contentList";
 
-    @Autowired
-    UserService userService;
+  @Autowired
+  UserService userService;
 
-    @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(method = RequestMethod.GET)
-    public List<BasicContent> getContentList(final ModelMap modelMap) {
-        List<BasicContent> res = new ArrayList<>();
+  @Autowired
+  ContentService contentService;
+
+  @ResponseBody
+  @ResponseStatus(HttpStatus.OK)
+  @RequestMapping(method = RequestMethod.GET)
+  public List<Content> getContentList(final ModelMap modelMap) {
+       /* List<BasicContent> res = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             res.add(new FooterContent("091/3100144", "Radnicka cesta 44", "www.pbz.hr"));
         }
-        modelMap.addAttribute(CONTENT_LIST, res);
-        return res;
-    }
+        modelMap.addAttribute(CONTENT_LIST, res);*/
 
+    final List<Content> pageableContent = contentService.findPageableContent(0, 10);
+    modelMap.addAttribute(CONTENT_LIST, pageableContent);
+    return pageableContent;
+  }
 
-    @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public BasicContent getContentDetails(@PathVariable(value = "id") Long id, final @ModelAttribute(CONTENT_LIST) List<BasicContent> list ) {
-        return list.get(0);
+  @ResponseBody
+  @ResponseStatus(HttpStatus.OK)
+  @RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
+  public Content getContentDetails(@PathVariable(value = "id") Long id,
+      final @ModelAttribute(CONTENT_LIST) List<Content> list) {
+    Assert.notNull(id);
+    Content result = null;
+    for (Content content : list ) {
+      if (content.getId().equals(id)){
+        result = content;
+      }
     }
+    return result;
+  }
 
 /*    @ResponseBody
     @ResponseStatus(HttpStatus.OK)

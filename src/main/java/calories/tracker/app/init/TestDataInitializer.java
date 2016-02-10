@@ -1,6 +1,6 @@
 package calories.tracker.app.init;
 
-
+import calories.tracker.app.model.ContentBuilder;
 import calories.tracker.app.model.Meal;
 import calories.tracker.app.model.User;
 import org.hibernate.Session;
@@ -33,10 +33,25 @@ public class TestDataInitializer {
 
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-
-        User user = new User("test123", "$2a$10$2zrZIHD.JXqlu8wR/LIto.5w0BeLT.M2GBA.FOp8kmW5urJz2VpMa", "test@email.com", 1000L);
+        //password = password
+        User user = new User("test",
+            /*"$2a$10$1G22iS7YOy0kifAuSNlK.OrzJyZWJCTur4xZZlldS5CIIPpiDGtfu"*/
+            "$2a$10$4nK54JKu564AgTUWIpkLHOiCkN0Um8VJgjif.bZeP/Q.eqmcVq/sO", "test@email.com", 1000L,
+            User.UserStatus.ACTIVE);
 
         session.persist(user);
+
+
+        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("main content1").setUserChanged(user).setUserCreated(user).createContent());
+        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("other stuff").setUserChanged(user).setUserCreated(user).createContent());
+        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("main pero").setUserChanged(user).setUserCreated(user).createContent());
+        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("saf content1").setUserChanged(user).setUserCreated(user).createContent());
+        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("dsfsaf content1").setUserChanged(user).setUserCreated(user).createContent());
+        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("sdffs content1").setUserChanged(user).setUserCreated(user).createContent());
+        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("test content1").setUserChanged(user).setUserCreated(user).createContent());
+        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("eeeter content1").setUserChanged(user).setUserCreated(user).createContent());
+        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("swddsd content1").setUserChanged(user).setUserCreated(user).createContent());
+        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("ewrerwr content1").setUserChanged(user).setUserCreated(user).createContent());
 
         session.persist(new Meal(user, new Date(115, 0, 1), new Time(12, 0, 0), "1 - Mitraillette", 2000L));
         session.persist(new Meal(user, new Date(115, 0, 1), new Time(19, 0, 0), "1 - Eggplant Parmesan", 1000L));

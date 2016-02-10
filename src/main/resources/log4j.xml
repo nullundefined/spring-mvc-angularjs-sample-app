@@ -10,6 +10,11 @@
         </layout>
     </appender>
 
+
+    <logger name="org.springframework.data.repository">
+        <level value="debug"/>
+    </logger>
+
     <logger name="calories.tracker.app">
         <level value="info"/>
     </logger>

@@ -2,6 +2,7 @@ package calories.tracker.app.dao;
 
 
 import calories.tracker.app.model.User;
+import calories.tracker.app.model.UserFilteringParams;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -68,5 +69,13 @@ public class UserRepository {
                 .getResultList();
 
         return users.isEmpty();
+    }
+
+    public List<User> findUsers(UserFilteringParams filteringParams){
+        List<User> users = em.createNamedQuery(User.FIND_ACTIVE_USERS, User.class)
+            .setParameter("status", filteringParams.getStatus())
+            .getResultList();
+
+        return users;
     }
 }
