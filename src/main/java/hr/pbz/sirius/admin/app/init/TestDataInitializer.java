@@ -33,7 +33,7 @@ public class TestDataInitializer {
 
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        //password = password
+        //password = 12345
         User user = new User("test",
             /*"$2a$10$1G22iS7YOy0kifAuSNlK.OrzJyZWJCTur4xZZlldS5CIIPpiDGtfu"*/
             "$2a$10$4nK54JKu564AgTUWIpkLHOiCkN0Um8VJgjif.bZeP/Q.eqmcVq/sO", "test@email.com", 1000L,

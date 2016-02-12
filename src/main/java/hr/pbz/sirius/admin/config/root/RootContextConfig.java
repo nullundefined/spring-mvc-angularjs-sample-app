@@ -19,9 +19,9 @@ import javax.persistence.EntityManagerFactory;
  */
 
 @Configuration
-@ComponentScan({"calories.tracker.app.services", "calories.tracker.app.dao",
-        "calories.tracker.app.init", " calories.tracker.app.security"})
-@EnableJpaRepositories(basePackages = {"calories.tracker.app.dao"})
+@ComponentScan({"hr.pbz.sirius.admin.app.services", "hr.pbz.sirius.admin.app.dao",
+        "hr.pbz.sirius.admin.app.init", " hr.pbz.sirius.admin.app.security"})
+@EnableJpaRepositories(basePackages = {"hr.pbz.sirius.admin.app"})
 public class RootContextConfig {
 
     @Bean(name = "transactionManager")
