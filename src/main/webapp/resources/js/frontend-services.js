@@ -18,7 +18,7 @@ angular.module('frontendServices', [])
             getContentDetails: function (id) {
                 var deferred = $q.defer();
 
-                $http.get('content/details/'+id)
+                $http.get('content/details/' + id)
                     .then(function (response) {
                         if (response.status == 200) {
                             deferred.resolve(response.data);
@@ -26,6 +26,27 @@ angular.module('frontendServices', [])
                             deferred.reject('Error retrieving list of meals');
                         }
                     });
+
+                return deferred.promise;
+            }, save: function (data) {
+                var deferred = $q.defer();
+                $http.post('content/save', data )
+                    .then(function (response) {
+                        if (response.status == 200) {
+                            deferred.resolve();
+                        } else {
+                            deferred.reject('Error retrieving list of meals');
+                        }
+                    });
+
+                /*$http.post('save', data)
+                    .then(function (response) {
+                        if (response.status == 200) {
+
+                        } else {
+                            deferred.reject('Error retrieving list of meals');
+                        }
+                    });*/
 
                 return deferred.promise;
             }

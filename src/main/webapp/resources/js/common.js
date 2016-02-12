@@ -3,6 +3,10 @@ angular.module('common', ['ngMessages'])
 
         var fieldWithFocus;
 
+        $scope.changeView = function(view){
+            $location.path(view); // path not hash
+        };
+
         $scope.vm = {
             submitted: false,
             errorMessages: []

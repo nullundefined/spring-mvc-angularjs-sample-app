@@ -18,4 +18,9 @@ appControllers.controller('ContentDetailsCtrl', ['$scope', '$http', '$routeParam
     ContentService.getContentDetails($scope.id).then(function (data) {
         $scope.content = data;
     });
+
+    ContentService.save().then(function (data) {
+
+        $scope.changeView('/contents');
+    });
 }]);
