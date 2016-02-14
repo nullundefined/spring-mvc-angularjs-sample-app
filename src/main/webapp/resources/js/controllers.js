@@ -20,7 +20,7 @@ appControllers.controller('ContentDetailsCtrl', ['$scope', '$http', '$routeParam
     });
 
     $scope.save = function(){
-        ContentService.save($scope.content);
+        ContentService.save($scope.content, '/contents');
     }
     /*ContentService.save().then(function (data) {
 

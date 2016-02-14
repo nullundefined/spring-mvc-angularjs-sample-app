@@ -1,5 +1,5 @@
 angular.module('frontendServices', [])
-    .service('ContentService', ['$http', '$q', function ($http, $q) {
+    .service('ContentService', ['$http', '$q', '$location', function ($http, $q, $location) {
         return {
             getBasicContent: function () {
                 var deferred = $q.defer();
@@ -28,14 +28,16 @@ angular.module('frontendServices', [])
                     });
 
                 return deferred.promise;
-            }, save: function (data) {
+            }, save: function (data, view) {
                 var deferred = $q.defer();
                 $http.post('content/save', data)
                     .then(function (response) {
                         if (response.status == 200) {
                             deferred.resolve();
+                            $location.path(view); // path not hash
                         } else {
                             deferred.reject('Error retrieving list of meals');
+                            $location.path(view); // path not hash
                         }
                     });
 

@@ -13,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -50,7 +51,7 @@ public class ContentController {
         }
         modelMap.addAttribute(CONTENT_LIST, res);*/
 
-    final List<Content> contents = contentService.findPageableContent(0, 10);
+    final List<Content> contents = contentService.findPageableContent(0, 50);
     final List<ContentDTO> contentDTOs = mapper.mapAsList(contents, ContentDTO.class);
     modelMap.addAttribute(CONTENT_LIST, contentDTOs);
     return contentDTOs;
@@ -63,8 +64,8 @@ public class ContentController {
       final @ModelAttribute(CONTENT_LIST) List<ContentDTO> list) {
     Assert.notNull(id);
     ContentDTO result = null;
-    for (ContentDTO content : list ) {
-      if (content.getId().equals(id)){
+    for (ContentDTO content : list) {
+      if (content.getId().equals(id)) {
         result = content;
       }
     }
@@ -72,10 +73,16 @@ public class ContentController {
   }
 
   @ResponseStatus(HttpStatus.OK)
-  @RequestMapping(value= "save", method = RequestMethod.POST)
+  @RequestMapping(value = "save", method = RequestMethod.POST)
   public void createUser(@RequestBody ContentDTO contentDTO) {
-    final Content content = mapper.map(contentDTO, Content.class);
-    contentService.save(content);
+    Content foundContent = contentService.findById(contentDTO.getId());
+    if (foundContent == null){
+      foundContent = new Content();
+      foundContent.setDateCreated(new Date());
+    }
+    foundContent.setMainContent(contentDTO.getMainContent());
+    foundContent.setDateChanged(new Date());
+    contentService.save(foundContent);
   }
 
 /*    @ResponseBody

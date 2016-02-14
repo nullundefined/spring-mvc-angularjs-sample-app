@@ -22,11 +22,16 @@ public class ContentService {
   @Autowired
   public ContentRepository repository;
 
+
   public List<Content> findPageableContent(int page, int pageSize) {
     return repository.findAll(new PageRequest(page, pageSize)).getContent();
   }
 
   public void save(Content content) {
     repository.save(Arrays.asList(content));
+  }
+
+  public Content findById(final Long id){
+    return repository.findOne(id);
   }
 }

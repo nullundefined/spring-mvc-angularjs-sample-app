@@ -1,4 +1,4 @@
-var cmsApp = angular.module('cmsApp', ['ngRoute', 'ngMessages', 'common', 'controllers']);
+var cmsApp = angular.module('cmsApp', ['spring-security-csrf-token-interceptor', 'ngRoute', 'ngMessages', 'common', 'controllers']);
 
 cmsApp.config(['$routeProvider',
     function ($routeProvider) {
