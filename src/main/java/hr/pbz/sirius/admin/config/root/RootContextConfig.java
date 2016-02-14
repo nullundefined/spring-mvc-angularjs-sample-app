@@ -20,7 +20,7 @@ import javax.persistence.EntityManagerFactory;
 
 @Configuration
 @ComponentScan({"hr.pbz.sirius.admin.app.services", "hr.pbz.sirius.admin.app.dao",
-        "hr.pbz.sirius.admin.app.init", " hr.pbz.sirius.admin.app.security"})
+        "hr.pbz.sirius.admin.app.init", " hr.pbz.sirius.admin.app.security", "hr.pbz.sirius.admin.app.dto.mapper"})
 @EnableJpaRepositories(basePackages = {"hr.pbz.sirius.admin.app"})
 public class RootContextConfig {
 

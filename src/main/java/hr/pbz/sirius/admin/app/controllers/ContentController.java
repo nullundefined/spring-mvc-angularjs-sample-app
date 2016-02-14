@@ -1,8 +1,10 @@
 package hr.pbz.sirius.admin.app.controllers;
 
+import hr.pbz.sirius.admin.app.dto.ContentDTO;
 import hr.pbz.sirius.admin.app.model.Content;
 import hr.pbz.sirius.admin.app.services.ContentService;
 import hr.pbz.sirius.admin.app.services.UserService;
+import ma.glasnost.orika.MapperFacade;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,34 +37,45 @@ public class ContentController {
   @Autowired
   ContentService contentService;
 
+  @Autowired
+  private MapperFacade mapper;
+
   @ResponseBody
   @ResponseStatus(HttpStatus.OK)
   @RequestMapping(method = RequestMethod.GET)
-  public List<Content> getContentList(final ModelMap modelMap) {
+  public List<ContentDTO> getContentList(final ModelMap modelMap) {
        /* List<BasicContent> res = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             res.add(new FooterContent("091/3100144", "Radnicka cesta 44", "www.pbz.hr"));
         }
         modelMap.addAttribute(CONTENT_LIST, res);*/
 
-    final List<Content> pageableContent = contentService.findPageableContent(0, 10);
-    modelMap.addAttribute(CONTENT_LIST, pageableContent);
-    return pageableContent;
+    final List<Content> contents = contentService.findPageableContent(0, 10);
+    final List<ContentDTO> contentDTOs = mapper.mapAsList(contents, ContentDTO.class);
+    modelMap.addAttribute(CONTENT_LIST, contentDTOs);
+    return contentDTOs;
   }
 
   @ResponseBody
   @ResponseStatus(HttpStatus.OK)
   @RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
-  public Content getContentDetails(@PathVariable(value = "id") Long id,
-      final @ModelAttribute(CONTENT_LIST) List<Content> list) {
+  public ContentDTO getContentDetails(@PathVariable(value = "id") Long id,
+      final @ModelAttribute(CONTENT_LIST) List<ContentDTO> list) {
     Assert.notNull(id);
-    Content result = null;
-    for (Content content : list ) {
+    ContentDTO result = null;
+    for (ContentDTO content : list ) {
       if (content.getId().equals(id)){
         result = content;
       }
     }
     return result;
+  }
+
+  @ResponseStatus(HttpStatus.OK)
+  @RequestMapping(value= "save", method = RequestMethod.POST)
+  public void createUser(@RequestBody ContentDTO contentDTO) {
+    final Content content = mapper.map(contentDTO, Content.class);
+    contentService.save(content);
   }
 
 /*    @ResponseBody

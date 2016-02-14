@@ -1,10 +1,10 @@
 {
-  "name": "spring-mvc-angularjs-calories-tracker",
+  "name": "digical@admin",
   "version": "1.0",
   "authors": [
-    "jhades.dev@gmail.com"
+    "matija.curkovic@pbz.hr"
   ],
-  "description": "Sample Spring MVC | AngularJs project - Calories tracker",
+  "description": "Digical platform administration module",
   "dependencies": {
     "angular": "1.3.8",
     "angular-messages": "1.3.8",

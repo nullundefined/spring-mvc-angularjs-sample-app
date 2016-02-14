@@ -16,6 +16,7 @@
         <jackson-version>2.4.4</jackson-version>
         <postgres.driver.version>9.3-1100-jdbc41</postgres.driver.version>
         <spring-data-jpa.version>1.9.2.RELEASE</spring-data-jpa.version>
+        <orika-core.version>1.4.2</orika-core.version>
     </properties>
 
 
@@ -179,6 +180,12 @@
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
             <version>${spring-data-jpa.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ma.glasnost.orika</groupId>
+            <artifactId>orika-core</artifactId>
+            <version>${orika-core.version}</version><!-- or latest version -->
         </dependency>
 
     </dependencies>

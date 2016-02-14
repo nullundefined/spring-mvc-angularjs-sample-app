@@ -30,7 +30,7 @@ angular.module('frontendServices', [])
                 return deferred.promise;
             }, save: function (data) {
                 var deferred = $q.defer();
-                $http.post('content/save', data )
+                $http.post('content/save', data)
                     .then(function (response) {
                         if (response.status == 200) {
                             deferred.resolve();

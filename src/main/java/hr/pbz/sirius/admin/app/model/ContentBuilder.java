@@ -8,6 +8,8 @@ public class ContentBuilder {
   private String mainContent;
   private Date dateCreated;
   private Date dateChanged;
+  private String otherContent;
+  private Date validUntil;
 
 
   public ContentBuilder setUserCreated(User userCreated) {
@@ -35,7 +37,17 @@ public class ContentBuilder {
     return this;
   }
 
+  public ContentBuilder setOtherContent(String otherContent) {
+    this.otherContent = otherContent;
+    return this;
+  }
+
+  public ContentBuilder setValidUntil(Date validUntil) {
+    this.validUntil = validUntil;
+    return this;
+  }
+
   public Content createContent() {
-    return new Content(userCreated, userChanged, mainContent, dateCreated, dateChanged);
+    return new Content(userCreated, userChanged, mainContent, dateCreated, dateChanged, otherContent, validUntil);
   }
 }

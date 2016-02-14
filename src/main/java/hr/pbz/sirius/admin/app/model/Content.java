@@ -16,8 +16,26 @@ public class Content extends AbstractEntity {
   @OneToOne
   public User userChanged;
   public String mainContent;
+  public String otherContent;
+  public Date validUntil;
   public Date dateCreated;
   public Date dateChanged;
+
+  public String getOtherContent() {
+    return otherContent;
+  }
+
+  public void setOtherContent(String otherContent) {
+    this.otherContent = otherContent;
+  }
+
+  public Date getValidUntil() {
+    return validUntil;
+  }
+
+  public void setValidUntil(Date validUntil) {
+    this.validUntil = validUntil;
+  }
 
   public User getUserCreated() {
     return userCreated;
@@ -59,12 +77,14 @@ public class Content extends AbstractEntity {
     this.dateChanged = dateChanged;
   }
 
-  public Content(User userCreated, User userChanged, String mainContent, Date dateCreated, Date dateChanged) {
+  public Content(User userCreated, User userChanged, String mainContent, Date dateCreated, Date dateChanged, String otherContent, Date validUntil) {
     this.userCreated = userCreated;
     this.userChanged = userChanged;
     this.mainContent = mainContent;
     this.dateCreated = dateCreated;
     this.dateChanged = dateChanged;
+    this.otherContent = otherContent;
+    this.validUntil = validUntil;
   }
 
   public Content(){

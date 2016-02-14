@@ -15,7 +15,7 @@
         <level value="debug"/>
     </logger>
 
-    <logger name="calories.tracker.app">
+    <logger name="hr.pbz.sirius.admin.app">
         <level value="info"/>
     </logger>
 
