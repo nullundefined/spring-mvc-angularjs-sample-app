@@ -19,11 +19,15 @@ appControllers.controller('ContentDetailsCtrl', ['$scope', '$http', '$routeParam
         $scope.content = data;
     });
 
-    $scope.save = function(){
+    $scope.save = function () {
         ContentService.save($scope.content, '/contents');
     }
-    /*ContentService.save().then(function (data) {
+}]);
 
-        $scope.changeView('/contents');
+appControllers.controller('DashboardCtrl', ['$scope', '$http', '$routeParams', 'DashboardService', function ($scope, $http, $routeParams, DashboardService) {
+    $scope.dashboard = {};
+
+    /*DashboardService.getDashboardData().then(function (data) {
+        $scope.dashboard = data;
     });*/
 }]);

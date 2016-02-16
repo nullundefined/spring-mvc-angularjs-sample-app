@@ -55,8 +55,6 @@ angular.module('common', ['ngMessages'])
                     }
                 });
         }
-
-
     }])
     .directive('checkPasswordsMatch', function () {
         return {

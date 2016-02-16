@@ -3,16 +3,17 @@ var cmsApp = angular.module('cmsApp', ['spring-security-csrf-token-interceptor',
 cmsApp.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.
-            when('/contents', {
-                templateUrl: '/resources/partials/contents.html',
-                controller: 'ContentCtrl'
-            }).
-            when('/content/details/:contentId', {
-                templateUrl: 'resources/partials/content-detail.html',
-                controller: 'ContentDetailsCtrl'
-            }).
-            otherwise({
-                redirectTo: '/contents'
-            });
+        when('/contents', {
+            templateUrl: '/resources/partials/contents.html',
+            controller: 'ContentCtrl'
+        }).when('/content/details/:contentId', {
+            templateUrl: 'resources/partials/content-detail.html',
+            controller: 'ContentDetailsCtrl'
+        }).when('/dashboard', {
+            templateUrl: '/resources/partials/dashboard.html',
+            controller: 'DashboardCtrl'
+        }).otherwise({
+            redirectTo: '/contents'
+        });
     }]);
 
