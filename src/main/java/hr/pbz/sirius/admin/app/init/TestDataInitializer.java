@@ -42,16 +42,16 @@ public class TestDataInitializer {
         session.persist(user);
 
 
-        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("main content1").setUserChanged(user).setUserCreated(user).createContent());
-        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("other stuff").setUserChanged(user).setUserCreated(user).createContent());
-        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("main pero").setUserChanged(user).setUserCreated(user).createContent());
-        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("saf content1").setUserChanged(user).setUserCreated(user).createContent());
-        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("dsfsaf content1").setUserChanged(user).setUserCreated(user).createContent());
-        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("sdffs content1").setUserChanged(user).setUserCreated(user).createContent());
-        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("test content1").setUserChanged(user).setUserCreated(user).createContent());
-        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("eeeter content1").setUserChanged(user).setUserCreated(user).createContent());
-        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("swddsd content1").setUserChanged(user).setUserCreated(user).createContent());
-        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("ewrerwr content1").setUserChanged(user).setUserCreated(user).createContent());
+        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("Java").setUserChanged(user).setUserCreated(user).createContent());
+        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("Scala").setUserChanged(user).setUserCreated(user).createContent());
+        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("C++").setUserChanged(user).setUserCreated(user).createContent());
+        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("JavaScript").setUserChanged(user).setUserCreated(user).createContent());
+        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("Haskell").setUserChanged(user).setUserCreated(user).createContent());
+        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("Go").setUserChanged(user).setUserCreated(user).createContent());
+        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("C#").setUserChanged(user).setUserCreated(user).createContent());
+        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("PHP").setUserChanged(user).setUserCreated(user).createContent());
+        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("Clojure").setUserChanged(user).setUserCreated(user).createContent());
+        session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("Kotlin").setUserChanged(user).setUserCreated(user).createContent());
 
         session.persist(new Meal(user, new Date(115, 0, 1), new Time(12, 0, 0), "1 - Mitraillette", 2000L));
         session.persist(new Meal(user, new Date(115, 0, 1), new Time(19, 0, 0), "1 - Eggplant Parmesan", 1000L));
