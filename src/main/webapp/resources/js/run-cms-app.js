@@ -17,6 +17,7 @@ require.config({
         slimscroll: '../bower_components/AdminLTE/plugins/slimScroll/jquery.slimscroll',
         <!-- FastClick -->
         fastclick: '../bower_components/AdminLTE/plugins/fastclick/fastclick',
+        chartjs: '../bower_components/AdminLTE/plugins/chartjs/Chart',
         adminLte: '../bower_components/AdminLTE/dist/js/app',
         demo: '../bower_components/AdminLTE/dist/js/demo',
         jquery: '../bower_components/AdminLTE/plugins/jQuery/jQuery-2.1.4.min'
@@ -58,8 +59,11 @@ require.config({
             deps: ['angular', 'csrfInterceptor']
         },
         fastclick: {},
+        chartjs: {
+            deps: ['jquery']
+        },
         adminLte: {
-            deps: ['jquery', 'bootstrap']
+            deps: ['jquery', 'bootstrap', 'chartjs']
         },
         demo: {
             deps: ['adminLte']
@@ -67,11 +71,10 @@ require.config({
         controllers: {
             deps: ['frontendServices']
         }
-
     }
 });
 
-require(['cmsApp', 'adminLte' ], function () {
+require(['cmsApp', 'adminLte'], function () {
     console.log('starting cmpsApp angular');
     /*$(function () {
      $('input').iCheck({
