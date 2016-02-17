@@ -15,6 +15,9 @@ cmsApp.config(['$routeProvider',
         }).when('/orders', {
             templateUrl: '/resources/partials/orders.html',
             controller: 'DashboardCtrl'
+        }).when('/users', {
+            templateUrl: '/resources/partials/users.html',
+            controller: 'DashboardCtrl'
         }).otherwise({
             redirectTo: '/contents'
         });
