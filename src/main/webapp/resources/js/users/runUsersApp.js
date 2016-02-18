@@ -11,8 +11,8 @@ require.config({
         angularRoute: '../bower_components/angular-route/angular-route',
         csrfInterceptor: '../bower_components/spring-security-csrf-token-interceptor/dist/spring-security-csrf-token-interceptor.min',
         main: 'main',
-        controllers: 'controllers',
-        frontendServices: 'frontend-services',
+        controllers: 'usersControllers',
+        frontendServices: 'usersServices',
         bootstrap: '../bootstrap/js/bootstrap',
         slimscroll: '../bower_components/AdminLTE/plugins/slimScroll/jquery.slimscroll',
         <!-- FastClick -->

@@ -1,6 +1,6 @@
-var appControllers = angular.module('controllers', ['frontendServices']);
+var usersCOntrollers = angular.module('controllers', ['frontendServices']);
 
-appControllers.controller('ContentCtrl', ['$scope', '$http', 'ContentService', function ($scope, $http, ContentService) {
+usersCOntrollers.controller('UsersCtrl', ['$scope', '$http', 'ContentService', function ($scope, $http, ContentService) {
     ContentService.getBasicContent().then(function (data) {
         $scope.content = data;
     });
@@ -11,11 +11,11 @@ appControllers.controller('ContentCtrl', ['$scope', '$http', 'ContentService', f
 
 }]);
 
-appControllers.controller('ContentDetailsCtrl', ['$scope', '$http', '$routeParams', 'ContentService', function ($scope, $http, $routeParams, ContentService) {
+usersCOntrollers.controller('UsersDetailCtrl', ['$scope', '$http', '$routeParams', 'ContentService', function ($scope, $http, $routeParams, ContentService) {
     $scope.id = $routeParams.contentId;
     $scope.content = {};
 
-    ContentService.getContentDetails($scope.id).then(function (data) {
+    ContentService.getContentDetails($scope.id).then(function (data) {\s
         $scope.content = data;
     });
 

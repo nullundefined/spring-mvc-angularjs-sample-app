@@ -19,7 +19,7 @@ cmsApp.config(['$routeProvider',
             templateUrl: '/resources/partials/users.html',
             controller: 'DashboardCtrl'
         }).otherwise({
-            redirectTo: '/contents'
+            redirectTo: '/dashboard'
         });
     }]);
 

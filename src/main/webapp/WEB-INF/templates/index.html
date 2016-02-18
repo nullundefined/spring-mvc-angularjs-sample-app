@@ -177,7 +177,10 @@
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    <form th:action="@{/logout}">
+                                        <button type="submit" class="btn btn-default btn-flat">Sign out</button>
+                                    </form>
+                                   <!-- <a th:href="@{/logout}" class="btn btn-default btn-flat">Sign out</a>-->
                                 </div>
                             </li>
                         </ul>
@@ -244,7 +247,7 @@
                         <li><a href="#/users"><i class="fa fa-circle-o"></i> Users</a></li>
                         <li><a href="#/users/role"><i class="fa fa-circle-o"></i> Roles</a></li>
                         <li><a href="#/users/modules"><i class="fa fa-circle-o"></i> Modules</a></li>
-                    </ul>
+ \                   </ul>
                 </li>
                 <li>
                     <a href="../widgets.html">
