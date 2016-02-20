@@ -1,4 +1,4 @@
-var cmsApp = angular.module('cmsApp', ['spring-security-csrf-token-interceptor', 'ngRoute', 'ngMessages', 'common', 'controllers']);
+var cmsApp = angular.module('cmsApp', ['spring-security-csrf-token-interceptor', 'ngRoute', 'ngMessages', 'common', 'controllers', 'commonServices']);
 
 cmsApp.config(['$routeProvider',
     function ($routeProvider) {
@@ -23,6 +23,23 @@ cmsApp.config(['$routeProvider',
         });
     }]);
 
+cmsApp.factory('csrfTokenInterceptor', [function () {
+    var csrfTokenInterceptor = {
+        response: function (response) {
+            var token = response.headers('X-CSRF-TOKEN');
+
+            console.log(token);
+
+            //CsrfTokenService.storeToken(token);
+            return response;
+        }
+    };
+    return csrfTokenInterceptor;
+}]);
+
+cmsApp.config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.interceptors.push('csrfTokenInterceptor');
+}]);
 
 cmsApp.directive('browserChart', function () {
     return {

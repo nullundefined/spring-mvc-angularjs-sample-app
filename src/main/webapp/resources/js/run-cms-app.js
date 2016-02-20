@@ -13,6 +13,7 @@ require.config({
         main: 'main',
         controllers: 'controllers',
         frontendServices: 'frontend-services',
+        commonServices: 'common/commonServices',
         bootstrap: '../bootstrap/js/bootstrap',
         slimscroll: '../bower_components/AdminLTE/plugins/slimScroll/jquery.slimscroll',
         <!-- FastClick -->
@@ -58,6 +59,9 @@ require.config({
         frontendServices: {
             deps: ['angular', 'csrfInterceptor']
         },
+        commonServices: {
+          deps:['angular']
+        },
         fastclick: {},
         chartjs: {
             deps: ['jquery']
@@ -69,7 +73,7 @@ require.config({
             deps: ['adminLte']
         },
         controllers: {
-            deps: ['frontendServices']
+            deps: ['frontendServices', 'commonServices']
         }
     }
 });

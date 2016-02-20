@@ -1,33 +1,21 @@
-var usersCOntrollers = angular.module('controllers', ['frontendServices']);
+var usersControllers = angular.module('controllers', ['frontendServices']);
 
-usersCOntrollers.controller('UsersCtrl', ['$scope', '$http', 'ContentService', function ($scope, $http, ContentService) {
-    ContentService.getBasicContent().then(function (data) {
-        $scope.content = data;
+usersControllers.controller('UsersCtrl', ['$scope', '$http', 'UsersService', function ($scope, $http, ContentService) {
+    $scope.selectedUser = {};
+    UsersService.findUsers().then(function (data) {
+        $scope.users = data;
     });
-
-    $scope.addContent = function () {
-        console.log('add content');
+    $scope.showDetails = function (item) {
+        UsersService.selectUser(item);
+       $location.path(view); // path not hash
     };
 
 }]);
 
-usersCOntrollers.controller('UsersDetailCtrl', ['$scope', '$http', '$routeParams', 'ContentService', function ($scope, $http, $routeParams, ContentService) {
-    $scope.id = $routeParams.contentId;
-    $scope.content = {};
-
-    ContentService.getContentDetails($scope.id).then(function (data) {\s
-        $scope.content = data;
-    });
+usersControllers.controller('UsersDetailCtrl', ['$scope', '$http', '$routeParams', 'ContentService', function ($scope, $http, $routeParams, ContentService) {
+    $scope.selectedUser = UsersService.getSelectedUser()
 
     $scope.save = function () {
-        ContentService.save($scope.content, '/contents');
+        //UsersService.save($scope.content, '/contents');
     }
-}]);
-
-appControllers.controller('DashboardCtrl', ['$scope', '$http', '$routeParams', 'DashboardService', function ($scope, $http, $routeParams, DashboardService) {
-    $scope.dashboard = {};
-
-    /*DashboardService.getDashboardData().then(function (data) {
-        $scope.dashboard = data;
-    });*/
 }]);
