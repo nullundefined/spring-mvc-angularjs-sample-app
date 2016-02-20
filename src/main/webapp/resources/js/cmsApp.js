@@ -23,13 +23,13 @@ cmsApp.config(['$routeProvider',
         });
     }]);
 
-cmsApp.factory('csrfTokenInterceptor', [function () {
+cmsApp.factory('csrfTokenInterceptor', ['CsrfTokenService', function (CsrfTokenService) {
     var csrfTokenInterceptor = {
         response: function (response) {
             var token = response.headers('X-CSRF-TOKEN');
-
-            console.log(token);
-
+            CsrfTokenService.storeToken(token);
+            console.log('TOKEN FROM REQUEST=' + token);
+            console.log('TOKEN FROM STORE=' + CsrfTokenService.getToken());
             //CsrfTokenService.storeToken(token);
             return response;
         }
