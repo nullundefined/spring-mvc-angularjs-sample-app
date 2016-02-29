@@ -1,6 +1,7 @@
 package hr.pbz.sirius.admin.config.servlet;
 
 import hr.pbz.sirius.admin.config.thymeleaf.RequireJsDialect;
+import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.thymeleaf.spring4.SpringTemplateEngine;
@@ -30,6 +31,7 @@ public class ThymeleafConfig {
         SpringTemplateEngine engine = new SpringTemplateEngine();
         engine.setTemplateResolver(templateResolver());
         engine.addDialect(requireJsDialect());
+        engine.addDialect(new LayoutDialect());
         return engine;
     }
 
