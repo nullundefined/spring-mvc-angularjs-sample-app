@@ -12,7 +12,7 @@ usersControllers.controller('UsersCtrl', ['$scope', '$http', 'UsersService', fun
 
 }]);
 
-usersControllers.controller('UsersDetailCtrl', ['$scope', '$http', '$routeParams', 'UsersService', function ($scope, $http, $routeParams, UsersService) {
+usersControllers.controller('UsersProfileCtrl', ['$scope', '$http', '$routeParams', 'UsersService', function ($scope, $http, $routeParams, UsersService) {
     $scope.selectedUser = UsersService.getSelectedUser()
 
     $scope.save = function () {

@@ -22,6 +22,7 @@ require.config({
         adminLte: '../bower_components/AdminLTE/dist/js/app',
         demo: '../bower_components/AdminLTE/dist/js/demo',
         jquery: '../bower_components/AdminLTE/plugins/jQuery/jQuery-2.1.4.min'
+
         /*<!-- AdminLTE App -->
          <script src="../../dist/js/app.min.js"></script>
          <!-- AdminLTE for demo purposes -->

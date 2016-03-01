@@ -11,7 +11,10 @@ requirejs.config({
         fastclick: '../../bower_components/AdminLTE/plugins/fastclick/fastclick',
         adminLte: '../../bower_components/AdminLTE/dist/js/app',
         demo: '../../bower_components/AdminLTE/dist/js/demo',
-        jquery: '../../bower_components/AdminLTE/plugins/jQuery/jQuery-2.1.4.min'
+        jquery: '../../bower_components/AdminLTE/plugins/jQuery/jQuery-2.1.4.min',
+        chartjs: '../../bower_components/AdminLTE/plugins/chartjs/Chart',
+        common: '../common',
+        commonServices: '../common/commonServices'
     },
     shim: {
         jquery: {
@@ -39,11 +42,17 @@ requirejs.config({
             deps: ['angular', 'csrfInterceptor', 'angularMessages']
         },
         fastclick: {},
+        chartjs: {
+            deps: ['jquery']
+        },
         adminLte: {
-            deps: ['jquery', 'bootstrap']
+            deps: ['jquery', 'bootstrap', 'chartjs']
         },
         demo: {
             deps: ['adminLte']
+        },
+        commonServices:{
+            deps: ['angular']
         }
     }
 });
