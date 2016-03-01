@@ -29,7 +29,7 @@ import java.util.List;
 @RequestMapping("/content")
 public class ContentController {
 
-  private static final Logger LOGGER = Logger.getLogger(UserController.class);
+  private static final Logger LOGGER = Logger.getLogger(ProfileController.class);
   public static final String CONTENT_LIST = "contentList";
 
   @Autowired
@@ -45,12 +45,6 @@ public class ContentController {
   @ResponseStatus(HttpStatus.OK)
   @RequestMapping(method = RequestMethod.GET)
   public List<ContentDTO> getContentList(final ModelMap modelMap) {
-       /* List<BasicContent> res = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            res.add(new FooterContent("091/3100144", "Radnicka cesta 44", "www.pbz.hr"));
-        }
-        modelMap.addAttribute(CONTENT_LIST, res);*/
-
     final List<Content> contents = contentService.findPageableContent(0, 50);
     final List<ContentDTO> contentDTOs = mapper.mapAsList(contents, ContentDTO.class);
     modelMap.addAttribute(CONTENT_LIST, contentDTOs);

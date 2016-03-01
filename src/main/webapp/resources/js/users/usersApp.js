@@ -1,4 +1,4 @@
-var usersApp = angular.module('usersApp', ['spring-security-csrf-token-interceptor', 'ngRoute', 'ngMessages', 'common', 'controllers']);
+var usersApp = angular.module('usersApp', ['spring-security-csrf-token-interceptor', 'ngRoute', 'ngMessages', 'usersControllers']);
 
 usersApp.config(['$routeProvider',
     function ($routeProvider) {

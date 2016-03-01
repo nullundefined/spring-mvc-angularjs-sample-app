@@ -7,14 +7,14 @@
 <!-- =============================================== -->
 <section layout:fragment="content">
     <!-- Main content -->
-    <section class="content" data-ng-cloak="">
+    <section id="usersApp" class="content" data-ng-cloak="">
         <div ng-view="ng-view"></div>
     </section>
     <!-- /.content -->
 </section>
 
 <section layout:fragment="main-js">
-    <script type="text/javascript" data-main="/resources/js/run-cms-app"
+    <script type="text/javascript" data-main="/resources/js/users/runUsersApp"
             src="/resources/bower_components/requirejs/require.js"></script>
 </section>
 
