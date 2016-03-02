@@ -5,7 +5,7 @@ usersService.service('UsersService', ['$http', '$q', '$location', function ($htt
     return {
         findUsers: function () {
             var deferred = $q.defer();
-            $http.get('users')
+            $http.get('user/users')
                 .then(function (response) {
                     if (response.status == 200) {
                         deferred.resolve(response.data);
