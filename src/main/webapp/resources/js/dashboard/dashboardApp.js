@@ -24,6 +24,9 @@ dasboardApp.config(['$routeProvider',
         });
     }]);
 
+/**
+ * Updates all form elements with hidden field named _csrf containing csrf token
+ */
 dasboardApp.factory('csrfTokenInterceptor', ['CsrfTokenService', function (CsrfTokenService) {
     var csrfTokenInterceptor = {
         response: function (response) {
@@ -31,7 +34,13 @@ dasboardApp.factory('csrfTokenInterceptor', ['CsrfTokenService', function (CsrfT
             CsrfTokenService.storeToken(token);
             console.log('TOKEN FROM REQUEST=' + token);
             console.log('TOKEN FROM STORE=' + CsrfTokenService.getToken());
-            //CsrfTokenService.storeToken(token);
+
+            $('<input>').attr({
+                type: 'hidden',
+                name: '_csrf',
+                value:token
+            }).appendTo('form');
+
             return response;
         }
     };
