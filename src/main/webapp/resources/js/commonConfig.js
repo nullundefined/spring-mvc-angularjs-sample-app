@@ -13,7 +13,7 @@ requirejs.config({
         demo: '../../bower_components/AdminLTE/dist/js/demo',
         jquery: '../../bower_components/AdminLTE/plugins/jQuery/jQuery-2.1.4.min',
         chartjs: '../../bower_components/AdminLTE/plugins/chartjs/Chart',
-        common: '../common',
+        common: '../common/common',
         commonServices: '../common/commonServices'
     },
     shim: {
