@@ -39,7 +39,20 @@ public class TestDataInitializer {
             "$2a$10$4nK54JKu564AgTUWIpkLHOiCkN0Um8VJgjif.bZeP/Q.eqmcVq/sO", "test@email.com", 1000L,
             User.UserStatus.ACTIVE);
 
+
+        User user1 = new User("user1",
+            /*"$2a$10$1G22iS7YOy0kifAuSNlK.OrzJyZWJCTur4xZZlldS5CIIPpiDGtfu"*/
+            "$2a$10$4nK54JKu564AgTUWIpkLHOiCkN0Um8VJgjif.bZeP/Q.eqmcVq/sO", "test@email.com", 1000L,
+            User.UserStatus.ACTIVE);
+
+        User user2 = new User("user2",
+            /*"$2a$10$1G22iS7YOy0kifAuSNlK.OrzJyZWJCTur4xZZlldS5CIIPpiDGtfu"*/
+            "$2a$10$4nK54JKu564AgTUWIpkLHOiCkN0Um8VJgjif.bZeP/Q.eqmcVq/sO", "test@email.com", 1000L,
+            User.UserStatus.ACTIVE);
+
         session.persist(user);
+        session.persist(user1);
+        session.persist(user2);
 
 
         session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("Java").setUserChanged(user).setUserCreated(user).createContent());
