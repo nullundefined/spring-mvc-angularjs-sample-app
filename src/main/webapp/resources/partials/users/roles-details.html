@@ -1,0 +1,48 @@
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-6">
+        <!-- general form elements -->
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Role Details</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="roleName">Name</label>
+                        <input type="text" class="form-control" id="roleName" placeholder="Role Name" value="{{role.name}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="roleDesc">Description</label>
+                        <input type="text" class="form-control" id="roleDesc" placeholder="Role Description" value="{{role.desc}}">
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-checked="role.active"> Active
+                        </label>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.box -->
+
+        <!-- /.box -->
+
+        <!-- Input addon -->
+
+        <!-- /.box -->
+
+    </div>
+    <!--/.col (left) -->
+    <!-- right column -->
+
+    <!--/.col (right) -->
+</div>

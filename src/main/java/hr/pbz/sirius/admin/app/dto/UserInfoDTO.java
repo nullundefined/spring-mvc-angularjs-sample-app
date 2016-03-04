@@ -7,10 +7,19 @@ package hr.pbz.sirius.admin.app.dto;
  */
 public class UserInfoDTO {
 
+    private String userId;
     private String userName;
     private String firstName;
     private String lastName;
     private String fullName;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getUserName() {
         return userName;

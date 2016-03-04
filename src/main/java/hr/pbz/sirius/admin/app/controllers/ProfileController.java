@@ -22,9 +22,11 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/user")
+@SessionAttributes(ProfileController.USERS_LIST)
 public class ProfileController {
 
   private static final Logger LOGGER = Logger.getLogger(ProfileController.class);
+  protected static final String USERS_LIST = "USERS_LIST";
 
   @Autowired
   UserService userService;
@@ -33,10 +35,7 @@ public class ProfileController {
   @ResponseStatus(HttpStatus.OK)
   @RequestMapping(method = RequestMethod.GET)
   public UserInfoDTO getUserInfo(Principal principal) {
-
     User user = userService.findUserByUsername(principal.getName());
-    Long todaysCalories = userService.findTodaysCaloriesForUser(principal.getName());
-
     final UserInfoDTO userInfoDTO = new UserInfoDTO();
     userInfoDTO.setUserName(principal.getName());
     userInfoDTO.setFirstName("N/A");
