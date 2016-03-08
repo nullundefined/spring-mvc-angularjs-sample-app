@@ -42,9 +42,9 @@ public class UserRepository {
      * @param username
      * @return the total number of calories for the user for today
      */
-    public Long findTodaysCaloriesForUser(String username) {
+   /* public Long findTodaysCaloriesForUser(String username) {
         return (Long) em.createNamedQuery(User.COUNT_TODAYS_CALORIES).setParameter("username", username).getSingleResult();
-    }
+    }*/
 
     /**
      *

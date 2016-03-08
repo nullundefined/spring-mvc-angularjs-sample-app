@@ -44,13 +44,6 @@ public class ProfileController {
     return user != null ? userInfoDTO : null;
   }
 
-  @ResponseBody
-  @ResponseStatus(HttpStatus.OK)
-  @RequestMapping(method = RequestMethod.PUT)
-  public void updateUserMaxCaloriesPerDay(Principal principal, @RequestBody Long newMaxCalories) {
-    userService.updateUserMaxCaloriesPerDay(principal.getName(), newMaxCalories);
-  }
-
   @ResponseStatus(HttpStatus.OK)
   @RequestMapping(method = RequestMethod.POST)
   public void createUser(@RequestBody NewUserDTO user) {

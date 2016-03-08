@@ -33,16 +33,6 @@ public class UserServiceTest {
     private EntityManager em;
 
     @Test
-    public void testUpdateUserMaxCaloriesPerDay() {
-
-        userService.updateUserMaxCaloriesPerDay("test123", 300L);
-
-        User user = findUserByUsername(USERNAME);
-        assertTrue("The user calories where not updated: " + user.getMaxCaloriesPerDay(),
-                user.getMaxCaloriesPerDay() == 300L);
-    }
-
-    @Test
     public void testFindUserByUsername() {
         User user = findUserByUsername(USERNAME);
         assertNotNull("User is mandatory",user);

@@ -2,9 +2,14 @@ package hr.pbz.sirius.admin.app.model.role;
 
 import hr.pbz.sirius.admin.app.model.AbstractEntity;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * Created by mcurkovic on 04.03.2016..
  */
+@Entity
+@Table(name = "ROLES")
 public class Role extends AbstractEntity {
   public enum RoleStatus{
     ACTIVE,

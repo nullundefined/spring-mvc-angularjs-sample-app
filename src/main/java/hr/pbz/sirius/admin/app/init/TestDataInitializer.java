@@ -1,7 +1,6 @@
 package hr.pbz.sirius.admin.app.init;
 
 import hr.pbz.sirius.admin.app.model.ContentBuilder;
-import hr.pbz.sirius.admin.app.model.Meal;
 import hr.pbz.sirius.admin.app.model.User;
 import hr.pbz.sirius.admin.app.model.role.Role;
 import org.hibernate.Session;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManagerFactory;
-import java.sql.Time;
 import java.util.Date;
 
 /**
@@ -21,6 +19,9 @@ import java.util.Date;
  */
 @Component
 public class TestDataInitializer {
+  //password = 12345
+  private static final String PASSWORD_DIGEST = "$2a$10$4nK54JKu564AgTUWIpkLHOiCkN0Um8VJgjif.bZeP/Q.eqmcVq/sO";
+  private static final String TEST_EMAIL_COM = "test@email.com";
 
   @Autowired
   private EntityManagerFactory entityManagerFactory;
@@ -31,45 +32,18 @@ public class TestDataInitializer {
 
     Session session = sessionFactory.openSession();
     Transaction transaction = session.beginTransaction();
-    //password = 12345
-    User user = new User("test",
-            /*"$2a$10$1G22iS7YOy0kifAuSNlK.OrzJyZWJCTur4xZZlldS5CIIPpiDGtfu"*/
-        "$2a$10$4nK54JKu564AgTUWIpkLHOiCkN0Um8VJgjif.bZeP/Q.eqmcVq/sO", "test@email.com", 1000L,
-        User.UserStatus.ACTIVE);
 
-    User user1 = new User("user1",
-            /*"$2a$10$1G22iS7YOy0kifAuSNlK.OrzJyZWJCTur4xZZlldS5CIIPpiDGtfu"*/
-        "$2a$10$4nK54JKu564AgTUWIpkLHOiCkN0Um8VJgjif.bZeP/Q.eqmcVq/sO", "test@email.com", 1000L,
-        User.UserStatus.ACTIVE);
-
-    User user2 = new User("user2",
-            /*"$2a$10$1G22iS7YOy0kifAuSNlK.OrzJyZWJCTur4xZZlldS5CIIPpiDGtfu"*/
-        "$2a$10$4nK54JKu564AgTUWIpkLHOiCkN0Um8VJgjif.bZeP/Q.eqmcVq/sO", "test@email.com", 1000L,
-        User.UserStatus.ACTIVE);
-
-    User user3 = new User("user3",
-            /*"$2a$10$1G22iS7YOy0kifAuSNlK.OrzJyZWJCTur4xZZlldS5CIIPpiDGtfu"*/
-        "$2a$10$4nK54JKu564AgTUWIpkLHOiCkN0Um8VJgjif.bZeP/Q.eqmcVq/sO", "test@email.com", 1000L,
-        User.UserStatus.ACTIVE);
-
-    User user4 = new User("user4",
-            /*"$2a$10$1G22iS7YOy0kifAuSNlK.OrzJyZWJCTur4xZZlldS5CIIPpiDGtfu"*/
-        "$2a$10$4nK54JKu564AgTUWIpkLHOiCkN0Um8VJgjif.bZeP/Q.eqmcVq/sO", "test@email.com", 1000L,
-        User.UserStatus.ACTIVE);
-
-    User user5 = new User("user5",
-            /*"$2a$10$1G22iS7YOy0kifAuSNlK.OrzJyZWJCTur4xZZlldS5CIIPpiDGtfu"*/
-        "$2a$10$4nK54JKu564AgTUWIpkLHOiCkN0Um8VJgjif.bZeP/Q.eqmcVq/sO", "test@email.com", 1000L,
-        User.UserStatus.ACTIVE);
-
+    //USERS
+    final User user = new User("test", PASSWORD_DIGEST, TEST_EMAIL_COM, User.UserStatus.ACTIVE);
     session.persist(user);
-    session.persist(user1);
-    session.persist(user2);
-    session.persist(user3);
-    session.persist(user4);
-    session.persist(user5);
 
+    session.persist(new User("user1", PASSWORD_DIGEST, TEST_EMAIL_COM, User.UserStatus.ACTIVE));
+    session.persist(new User("user2", PASSWORD_DIGEST, TEST_EMAIL_COM, User.UserStatus.ACTIVE));
+    session.persist(new User("user3", PASSWORD_DIGEST, TEST_EMAIL_COM, User.UserStatus.ACTIVE));
+    session.persist(new User("user4", PASSWORD_DIGEST, TEST_EMAIL_COM, User.UserStatus.ACTIVE));
+    session.persist(new User("user5", PASSWORD_DIGEST, TEST_EMAIL_COM, User.UserStatus.ACTIVE));
 
+    //ROLES
     Role role1 = new Role();
     role1.setDescription("Full system administrators");
     role1.setName("admin_role");
@@ -78,11 +52,9 @@ public class TestDataInitializer {
     role2.setDescription("Matching list operators");
     role2.setName("payments_role");
 
-
     Role role3 = new Role();
     role3.setDescription("Content managers. E.g. LBS management, CMS management...");
     role3.setName("content_role");
-
 
     Role role4 = new Role();
     role4.setDescription("LBS management");
@@ -93,51 +65,59 @@ public class TestDataInitializer {
     session.persist(role3);
     session.persist(role4);
 
-    session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("Java")
-        .setUserChanged(user).setUserCreated(user).createContent());
-    session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("Scala")
-        .setUserChanged(user).setUserCreated(user).createContent());
-    session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("C++")
-        .setUserChanged(user).setUserCreated(user).createContent());
+    //CONTENT
     session.persist(
-        new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("JavaScript")
-            .setUserChanged(user).setUserCreated(user).createContent());
-    session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("Haskell")
-        .setUserChanged(user).setUserCreated(user).createContent());
-    session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("Go")
-        .setUserChanged(user).setUserCreated(user).createContent());
-    session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("C#")
-        .setUserChanged(user).setUserCreated(user).createContent());
-    session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("PHP")
-        .setUserChanged(user).setUserCreated(user).createContent());
-    session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("Clojure")
-        .setUserChanged(user).setUserCreated(user).createContent());
-    session.persist(new ContentBuilder().setDateChanged(new Date()).setDateCreated(new Date()).setMainContent("Kotlin")
-        .setUserChanged(user).setUserCreated(user).createContent());
+        new ContentBuilder()
+            .setDateChanged(new Date())
+            .setDateCreated(new Date())
+            .setMainContent("Java")
+            .setUserChanged(user)
+            .setUserCreated(user)
+            .createContent());
+    session.persist(
+        new ContentBuilder()
+            .setDateChanged(new Date())
+            .setDateCreated(new Date())
+            .setMainContent("C++")
+            .setUserChanged(user)
+            .setUserCreated(user)
+            .createContent());
 
-    session.persist(new Meal(user, new Date(115, 0, 1), new Time(12, 0, 0), "1 - Mitraillette", 2000L));
-    session.persist(new Meal(user, new Date(115, 0, 1), new Time(19, 0, 0), "1 - Eggplant Parmesan", 1000L));
     session.persist(
-        new Meal(user, new Date(115, 0, 2), new Time(12, 0, 0), "2 -  Chickpea with roasted cauliflower", 2000L));
+        new ContentBuilder()
+            .setDateChanged(new Date())
+            .setDateCreated(new Date())
+            .setMainContent("Scala")
+            .setUserChanged(user)
+            .setUserCreated(user)
+            .createContent());
+
     session.persist(
-        new Meal(user, new Date(115, 0, 2), new Time(19, 0, 0), "2 - Chicken Stew with Turnips & Mushrooms", 1000L));
+        new ContentBuilder()
+            .setDateChanged(new Date())
+            .setDateCreated(new Date())
+            .setMainContent("Kotlin")
+            .setUserChanged(user)
+            .setUserCreated(user)
+            .createContent());
+
     session.persist(
-        new Meal(user, new Date(115, 0, 3), new Time(12, 0, 0), "3 - Rosemary Lentils & Greens on Toasted Bread",
-            2000L));
+        new ContentBuilder()
+            .setDateChanged(new Date())
+            .setDateCreated(new Date())
+            .setMainContent("Haskell")
+            .setUserChanged(user)
+            .setUserCreated(user)
+            .createContent());
+
     session.persist(
-        new Meal(user, new Date(115, 0, 3), new Time(19, 0, 0), "3 - Salmon Cakes with Olives, Lemon & Dill", 1000L));
-    session.persist(new Meal(user, new Date(115, 0, 4), new Time(12, 0, 0), "4 - Cowboy Beef & Bean Chili", 2000L));
-    session.persist(new Meal(user, new Date(115, 0, 4), new Time(19, 0, 0), "4 -  Duck Chiles Rellenos", 1000L));
-    session
-        .persist(new Meal(user, new Date(115, 0, 5), new Time(12, 0, 0), "5 - Brussels Sprout & Potato Hash", 2000L));
-    session.persist(
-        new Meal(user, new Date(115, 0, 5), new Time(19, 0, 0), "5 -  Creamy Green Chile Chicken Soup", 1000L));
-    session.persist(new Meal(user, new Date(115, 0, 6), new Time(12, 0, 0), "6 -  Duck Chiles Rellenos", 2000L));
-    session.persist(new Meal(user, new Date(115, 0, 6), new Time(19, 0, 0), "6 -  Apricot-Chile Glazed Salmon", 1000L));
-    session.persist(new Meal(user, new Date(115, 0, 7), new Time(12, 0, 0), "7 -  Creamy Mustard Chicken", 2000L));
-    session.persist(new Meal(user, new Date(115, 0, 7), new Time(19, 0, 0), "7 -   Grape Chutney", 1000L));
-    session.persist(new Meal(user, new Date(115, 0, 8), new Time(12, 0, 0), "8 -  Broccoli Rabe", 2000L));
-    session.persist(new Meal(user, new Date(115, 0, 8), new Time(19, 0, 0), "8 -  Moules Frites", 1000L));
+        new ContentBuilder()
+            .setDateChanged(new Date())
+            .setDateCreated(new Date())
+            .setMainContent("Clojure")
+            .setUserChanged(user)
+            .setUserCreated(user)
+            .createContent());
 
     transaction.commit();
   }

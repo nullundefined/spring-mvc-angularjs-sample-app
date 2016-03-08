@@ -1,9 +1,7 @@
 package hr.pbz.sirius.admin.app.services;
 
 import hr.pbz.sirius.admin.app.dao.ContentRepository;
-import hr.pbz.sirius.admin.app.dto.ContentDTO;
 import hr.pbz.sirius.admin.app.model.Content;
-import ma.glasnost.orika.MapperFacade;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -17,7 +15,7 @@ import java.util.List;
  */
 @Service
 public class ContentService {
-  private static final Logger LOGGER = Logger.getLogger(MealService.class);
+  private static final Logger LOGGER = Logger.getLogger(ContentService.class);
 
   @Autowired
   public ContentRepository repository;
